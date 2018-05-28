@@ -9,7 +9,7 @@ module ApiResponseCache
 
       def around(controller)
         init(controller)
-        if @response_cache.present?
+        if @request.get? && @response_cache.present? &&
           log_info
           render_cached_response
         else
