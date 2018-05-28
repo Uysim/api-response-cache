@@ -30,8 +30,16 @@ module ApiResponseCache
         @controller         = controller
         @request            = controller.request
         @processor_name     = "#{@controller.class.name}##{@controller.action_name}"
-        @cache_path       ||= "api-response-cache/#{@processor_name}/#{@options[:cache_path] || @request.fullpath}"
-        @response_cache     = ResponseCache.new(@cache_path, @expires_in)
+        @response_cache     = ResponseCache.new(cache_path, @expires_in)
+      end
+
+      def cache_path
+        return @cache_path if @cache_path.present?
+        @cache_path = "api-response-cache/#{@processor_name || @options[:cache_path]}"
+        if ApiResponseCache.configuration.refresh_by_request_params?
+          @cache_path = "#{@cache_path}/#{@request.fullpath}"
+        end
+        @cache_path
       end
 
       def render_cached_response
