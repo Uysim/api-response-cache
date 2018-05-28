@@ -6,12 +6,13 @@ require "api_response_cache/version"
 Gem::Specification.new do |spec|
   spec.name          = "api-response-cache"
   spec.version       = ApiResponseCache::VERSION
+  spec.summary       = "Cache api render"
+  spec.description   = "Improve api resonse by cache status, header, and response body"
+  spec.homepage      = "https://github.com/Uysim/api-response-cache"
+
   spec.authors       = ["Uysim Ty"]
   spec.email         = ["uysimty@gmail.com"]
 
-  spec.summary       = "Use for cache api render"
-  spec.description   = "Use for cache api render"
-  spec.homepage      = "http://uysim.com"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
