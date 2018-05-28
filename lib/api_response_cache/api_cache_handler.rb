@@ -21,7 +21,7 @@ module ApiResponseCache
       protected
 
       def log_info
-        processor     = Rainbow("#{@controller.class.name}##{@controller.action_name}").blue
+        processor     = @processor_name.blue
         responder     = Rainbow('API Response Cache').green
         Rails.logger.info "=== #{processor} response by #{responder} ==="
       end
@@ -29,8 +29,8 @@ module ApiResponseCache
       def init(controller)
         @controller         = controller
         @request            = controller.request
-        @cache_path       ||= "api-response-cache/#{@options[:cache_path] || @request.fullpath}"
-
+        @processor_name     = "#{@controller.class.name}##{@controller.action_name}"
+        @cache_path       ||= "api-response-cache/#{@processor_name}/#{@options[:cache_path] || @request.fullpath}"
         @response_cache     = ResponseCache.new(@cache_path, @expires_in)
       end
 
