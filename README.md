@@ -1,5 +1,5 @@
 # API Response Cache
-Improve your server response time by caching your response data to client side.
+Improve rails server api response time by caching your rails api response response data to client side.
 
 ## Installation
 Add to Gemfile
@@ -18,6 +18,22 @@ ApiResponseCache.configure do |config|
   config.refresh_by_request_params = false  # true to saperate cache by request params
 end
 ```
+
+## Basic Usage
+```
+class ExamplesController < ActionController::API
+  cache_response_for :index
+
+  def index
+    # ... your code here
+  end
+end
+```
+#### Add expire duration
+```
+cache_response_for :index, expires_in: 1.day
+```
+
 
 ## TO DO
 - [ ] Clear cache

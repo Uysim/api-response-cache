@@ -6,7 +6,7 @@ require "api_response_cache/version"
 Gem::Specification.new do |spec|
   spec.name          = "api-response-cache"
   spec.version       = ApiResponseCache::VERSION
-  spec.summary       = "Cache api render"
+  spec.summary       = "Cache api render for Ruby On Rails app"
   spec.description   = "Improve api resonse by cache status, header, and response body"
   spec.homepage      = "https://github.com/Uysim/api-response-cache"
 
