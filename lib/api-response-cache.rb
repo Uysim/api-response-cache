@@ -16,4 +16,8 @@ module ApiResponseCache
   def self.configuration
     @configuration ||= ApiResponseCache::Config.new
   end
+
+  def self.clear
+     Rails.cache.delete_matched('api-response-cache/*')
+  end
 end
