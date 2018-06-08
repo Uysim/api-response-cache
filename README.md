@@ -34,6 +34,12 @@ end
 cache_response_for :index, expires_in: 1.day
 ```
 
+#### Clear Cache
+```
+ApiResponseCache.clear
+```
+
+
 
 ## TO DO
 - [ ] Clear cache
