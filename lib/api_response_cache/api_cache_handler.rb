@@ -35,10 +35,20 @@ module ApiResponseCache
 
       def cache_path
         return @cache_path if @cache_path.present?
+
         @cache_path = "api-response-cache/#{@processor_name || @options[:cache_path]}"
+
         if ApiResponseCache.configuration.refresh_by_request_params?
-          @cache_path = "#{@cache_path}/#{@request.fullpath}"
+          @cache_path = "#{@cache_path}#{@request.fullpath}"
         end
+
+        if ApiResponseCache.configuration.cache_by_headers.present?
+          cache_by_headers = ApiResponseCache.configuration.cache_by_headers
+          headers = @request.headers.select{ |key, value| cache_by_headers.include?(key) }
+          headers_cache_path = headers.to_json
+          @cache_path = "#{@cache_path}/#{headers_cache_path}"
+        end
+
         @cache_path
       end
 
