@@ -34,8 +34,6 @@ module ApiResponseCache
       end
 
       def cache_path
-        return @cache_path if @cache_path.present?
-
         @cache_path = "api-response-cache/#{@processor_name || @options[:cache_path]}"
 
         if ApiResponseCache.configuration.refresh_by_request_params?
