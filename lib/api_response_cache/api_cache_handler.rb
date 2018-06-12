@@ -9,7 +9,7 @@ module ApiResponseCache
 
       def around(controller)
         init(controller)
-        if @request.get? && @response_cache.present? &&
+        if should_response_cache?
           log_info
           render_cached_response
         else
@@ -19,6 +19,10 @@ module ApiResponseCache
       end
 
       protected
+
+      def should_response_cache?
+        @request.get? && @response_cache.present?
+      end
 
       def log_info
         processor     = @processor_name.blue
@@ -64,3 +68,4 @@ module ApiResponseCache
     end
   end
 end
+
