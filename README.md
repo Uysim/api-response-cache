@@ -43,5 +43,5 @@ ApiResponseCache.clear
 
 
 ## TO DO
-- [ ] Clear cache
-- [ ] Expire cache
+- [ ] Block check in contoller
+- [ ] Block check in config
