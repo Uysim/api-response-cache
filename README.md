@@ -16,6 +16,7 @@ If you want to change config create file at ```config/initializers/api_response_
 ```
 ApiResponseCache.configure do |config|
   config.refresh_by_request_params = false  # true to saperate cache by request params
+  config.cache_by_headers = ['header-key']  # optional this need when saperate cache with header only
 end
 ```
 
@@ -42,5 +43,5 @@ ApiResponseCache.clear
 
 
 ## TO DO
-- [ ] Clear cache
-- [ ] Expire cache
+- [ ] Block check in contoller
+- [ ] Block check in config
