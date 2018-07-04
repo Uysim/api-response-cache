@@ -45,9 +45,10 @@ module ApiResponseCache
         end
 
         if ApiResponseCache.configuration.cache_by_headers.present?
-          cache_by_headers = ApiResponseCache.configuration.cache_by_headers
-          headers = @request.headers.select{ |key, value| cache_by_headers.include?(key) }
-          headers_cache_path = headers.to_json
+          headers = ApiResponseCache.configuration.cache_by_headers.map do |header|
+            @request.headers[header].to_s
+          end
+          headers_cache_path = headers.join('-')
           @cache_path = "#{@cache_path}/#{headers_cache_path}"
         end
 
